@@ -1,0 +1,10 @@
+FROM debian
+RUN apt-get update
+RUN apt-get -y install wget curl vim openssl git
+WORKDIR /root
+RUN git clone --depth 1 https://github.com/kelseyhightower/kubernetes-the-hard-way.git
+WORKDIR /root/kubernetes-the-hard-way
+RUN mkdir downloads
+RUN wget -q --show-progress --https-only --timestamping -P downloads -i downloads.txt
+RUN chmod +x downloads/kubectl
+RUN cp downloads/kubectl /usr/local/bin/
