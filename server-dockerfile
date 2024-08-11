@@ -1,0 +1,5 @@
+FROM debian
+RUN apt-get update
+RUN apt-get -y install ssh
+RUN sed -i 's/^#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN service ssh restart
